@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="library.css" type="text/CSS">
+    <script src="library.js" defer></script>
+</head>
+<body>
+    <div></div>
+    <div>
+        <form onsubmit="return false">
+            <div>
+                <label for="title">Title of the book</label>
+                <input type="text" name="title" id="title" placeholder="Title">
+            </div>
+            
+            <div>
+               <label for="author">Author of the book</label>
+                <input type="text" name="author" id="author" placeholder="Author"> 
+            </div>
+            
+            <div>
+                <label for="number">Number of pages</label>
+                <input type="number" name="number" id="number">    
+            </div>
+            
+            <div>
+                <label for="red">I have read the book.</label>
+                <input type="checkbox" name="read" id="read">    
+            </div>
+
+            <button type="submit">Enter Book</button>
+        </form>
+    </div>
+    <div id="showBook"></div>
+</body>
+</html>
