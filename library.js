@@ -48,22 +48,43 @@ function updateLibrary() {
     bookShelf.textContent = ''
     myLibrary.forEach(element => {
         const e = myLibrary.indexOf(element)
-        const div = document.createElement('div')
+        const bookDiv = document.createElement('div')
+        const titleDiv = document.createElement('div')
+        const authorDiv = document.createElement('div')
+        const readDiv = document.createElement('div')
+        const pagesDiv = document.createElement('div')
         const deleteButton = document.createElement('button')
+        const readStatus = document.createElement('input')
+        readStatus.setAttribute('type', 'checkbox')
+        titleDiv.className = 'titleDiv'
+        authorDiv.className = 'authorDiv'
+        readDiv.className = 'readDiv'
+        pagesDiv.className = 'pagesDiv'
         deleteButton.textContent = 'Delete Book'
-        bookShelf.append(div)
-        div.append(deleteButton)
-        div.id = e;
+        bookShelf.append(bookDiv)
+        bookDiv.append(titleDiv, authorDiv, pagesDiv, readDiv, deleteButton)
+        bookDiv.id = e;
         deleteButton.dataset.id = e;
         if (e === 0) {
-            return div.append(myLibrary[0].title, myLibrary[0].author,
-                myLibrary[0].pages, myLibrary[0].read)
+            return (
+                titleDiv.append(myLibrary[0].title),
+                authorDiv.append(myLibrary[0].author),
+                pagesDiv.append(myLibrary[0].pages),
+                readDiv.append(myLibrary[0].read)
+            );
         }
         else if (e >= 1) {
-            return div.append(myLibrary[e].title, myLibrary[e].author,
-                myLibrary[e].pages, myLibrary[e].read)
+            return (
+                titleDiv.append(myLibrary[e].title),
+                authorDiv.append(myLibrary[e].author),
+                pagesDiv.append(myLibrary[e].pages),
+                readDiv.append(myLibrary[e].read)
+            );
         }
     })
     deleteBook()
 }
 
+Book.prototype.readStatus = function () {
+
+}
