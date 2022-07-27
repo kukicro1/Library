@@ -44,7 +44,7 @@ function deleteBook() {
     })
 }
 
-function updateLibrary() {
+function updateLibrary() { //Update nested div and myLibrary array
     bookShelf.textContent = ''
     myLibrary.forEach(element => {
         const e = myLibrary.indexOf(element)
@@ -56,6 +56,7 @@ function updateLibrary() {
         const deleteButton = document.createElement('button')
         const readStatus = document.createElement('input')
         readStatus.setAttribute('type', 'checkbox')
+        readStatus.checked = myLibrary[e].read
         titleDiv.className = 'titleDiv'
         authorDiv.className = 'authorDiv'
         readDiv.className = 'readDiv'
@@ -64,13 +65,14 @@ function updateLibrary() {
         bookShelf.append(bookDiv)
         bookDiv.append(titleDiv, authorDiv, pagesDiv, readDiv, deleteButton)
         bookDiv.id = e;
+        readStatus.dataset.checkId = e;
         deleteButton.dataset.id = e;
         if (e === 0) {
             return (
                 titleDiv.append(myLibrary[0].title),
                 authorDiv.append(myLibrary[0].author),
                 pagesDiv.append(myLibrary[0].pages),
-                readDiv.append(myLibrary[0].read)
+                readDiv.append(readStatus)
             );
         }
         else if (e >= 1) {
@@ -78,13 +80,21 @@ function updateLibrary() {
                 titleDiv.append(myLibrary[e].title),
                 authorDiv.append(myLibrary[e].author),
                 pagesDiv.append(myLibrary[e].pages),
-                readDiv.append(myLibrary[e].read)
+                readDiv.append(readStatus)
             );
         }
     })
     deleteBook()
+    readBook()
 }
 
-Book.prototype.readStatus = function () {
-
+function readBook() { //Check read status of the book
+    const checkbox = document.querySelectorAll('[data-check-id]')
+    checkbox.forEach(check => {
+        check.addEventListener('change', () => {
+            const id = check.dataset.checkId
+            const checkValue = check.checked
+            myLibrary[id].read = checkValue
+        })
+    })
 }
