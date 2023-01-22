@@ -9,7 +9,6 @@ class Book {
     }
 }
 
-
 const $title = document.querySelector('#title')
 const $author = document.querySelector('#author')
 const $pages = document.querySelector('#number')
