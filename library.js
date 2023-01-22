@@ -13,13 +13,19 @@ const $pages = document.querySelector('#number')
 const $read = document.querySelector('#read')
 const form = document.querySelector('form')
 const bookShelf = document.querySelector('#showBook')
-document.querySelector('button').addEventListener('click', addBookToLibrary);
+const submit = document.querySelector('button')
+
+submit.addEventListener('click', addBookToLibrary);
 
 function addBookToLibrary() {
     const newBook = new Book($title.value, $author.value, $pages.value, $read.checked);
-    if (newBook.title === '' || newBook.author === '' || newBook.pages === '') {
-        return alert('Please fill in all fields.')
+    if (!$title.checkValidity() || !$author.checkValidity() ||
+        !$pages.checkValidity()) {
+        submit.preventDefault()
     }
+    // if (newBook.title === '' || newBook.author === '' || newBook.pages === '') {
+    //     return alert('Please fill in all fields.')
+    // }
     else {
         myLibrary.push(newBook)
         form.reset()
